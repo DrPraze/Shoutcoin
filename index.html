@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/font/decibel-meter/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
+
+    <title>Shoutcoin Beta</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" /> -->
+
+  </head>
+
+  <body>
+    <!-- ***** Preloader Start ***** -->
+<!--     <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div> -->
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="index.html" class="logo">
+                <img src="static/img/logo.png" alt="" />
+              </a>
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Menu Start ***** -->
+              <ul class="nav">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="https://github.com/DrPraze/Shoutcoin">Src code</a></li>
+                <li><a href="https://github.com/DrPraze/shout-chain">Blockchain code</a></li>
+                <li><a href="http://drpraze.github.io">My Portfolio</a></li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <!-- ***** Banner Start ***** -->
+            <div class="main-banner">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="header-text">
+                    <h6>Welcome To Shoutcoin</h6>
+                    <h4><em>Where</em> you can mine from using your voice</h4>
+                    <div class="main-button">
+                      <a href="#body">Get Started</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Banner End ***** -->
+
+<body id="#body">
+
+<div id="message" >Click the Mic to start mining with your voice</div>
+
+<div id="meter" class="icon-microphone" style="width: 10%; height: 13%"><span>Mining</span></div>
+
+<script src="static/js/decibel-meter.js"></script>
+
+<script>
+	
+	var meterEl = document.getElementById('meter'),
+		levelEl = document.querySelector('#meter > span');
+	
+	var meter = DecibelMeter.create('meter');
+	
+	// listen for audio sources to be ready
+	
+	meter.on('ready', function (meter, sources) {
+		var mic = sources[0]; // select first mic
+		meter.connect(mic); // connect to mic
+	});
+	
+	// adjust displayed level when audio sampled
+	
+	meter.on('sample', function (dB, percent, level) {
+		levelEl.style.height = (percent * 100) + '%';
+	});
+	
+	// change element class when meter starts listening
+	
+	meter.on('listen', function (meter) {
+		meterEl.classList.add('active');
+	});
+	
+	// change element class when meter stops listening
+	
+	meter.on('stop-listening', function (meter) {
+		meterEl.classList.remove('active');
+		levelEl.style.height = 0;
+	});
+	
+	// clicking the meter element will toggle listening
+	
+	meterEl.addEventListener('click', function (e) {
+		if (meter.listening){
+			meter.stopListening();
+		}
+		else{
+			meter.listen();
+		}
+	});
+
+</script>
+</body>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p>
+          Copyright © 2023 <a href="#">Shoutcoin</a> HQ. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+    </footer>
+</html>
