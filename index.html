@@ -93,6 +93,17 @@
 <script src="static/js/decibel-meter.js"></script>
 
 <script>
+        function mine() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    alert(xhr.response);
+                }
+            }
+            xhr.open('get', 'https://path-to-shoutchain.com/mine', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            xhr.send();
+        }
 	
 	var meterEl = document.getElementById('meter'),
 		levelEl = document.querySelector('#meter > span');
@@ -116,6 +127,7 @@
 	
 	meter.on('listen', function (meter) {
 		meterEl.classList.add('active');
+                mine();
 	});
 	
 	// change element class when meter stops listening
